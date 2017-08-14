@@ -71,8 +71,5 @@ while($counter <= 50){
 }
 
 echo $counter-1 .' row inserted!<br>';
-//
-// $count_query = $conn->query("SELECT COUNT(*) FROM tractors")->fetchAll();
-// echo count($count_query) ."row </br>";
 
 die();
