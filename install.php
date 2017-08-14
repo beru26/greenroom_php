@@ -17,8 +17,25 @@ if ($stmt) {
     echo 'Table creation failed';
 }
 
-//Random genereated data
+//Create Tractor class with constructor function
+class Tractor{
 
+    public $brand;
+    public $type;
+    public $price;
+    public $performance;
+    public $description;
+
+    function __construct($Brand,$Type,$Price,$Performance,$Description){
+        $this->brand = $Brand;
+        $this->type = $Type;
+        $this->price = $Price;
+        $this->performance = $Performance;
+        $this->description = $Description;
+    }
+}
+
+//Random genereated data
 function randomBrand(){
     $brand_list = array("Toyota", "Lada", "Mazda", "Suzuki");
     return $brand_list[array_rand($brand_list)];
@@ -35,7 +52,7 @@ function randomPrice(){
 }
 
 function randomPerf(){
-    $performance_list = array("60kW", "80kW", "90kW");
+    $performance_list = array("60 kW", "80 kW", "90 kW");
     return $performance_list[array_rand($performance_list)];
 }
 
@@ -47,11 +64,8 @@ function randomDescr(){
 //fill the table with the generated data
 $counter = 1;
 while($counter <= 50){
-    $brand = randomBrand();
-    $type = randomType();
-    $price = randomPrice();
-    $perf = randomPerf();
-    $desc = randomDescr();
+    $tractor = new Tractor(randomBrand(),randomType(),randomPrice(),randomPerf(),randomDescr());
+
     $sql = ("INSERT INTO tractors(brand, type,
             price,performance,description)
             VALUES(:brand,:type,:price,
@@ -60,11 +74,11 @@ while($counter <= 50){
 
     $instmt = $conn->prepare($sql);
 
-    $instmt->bindValue(':brand', $brand);
-    $instmt->bindValue(':type', $type);
-    $instmt->bindValue(':price', $price);
-    $instmt->bindValue(':performance', $perf);
-    $instmt->bindValue(':description', $desc);
+    $instmt->bindValue(':brand', $tractor->brand);
+    $instmt->bindValue(':type', $tractor->type);
+    $instmt->bindValue(':price', $tractor->price);
+    $instmt->bindValue(':performance', $tractor->performance);
+    $instmt->bindValue(':description', $tractor->description);
 
     $inserted = $instmt->execute();
     $counter++;
