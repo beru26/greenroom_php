@@ -1,9 +1,10 @@
 <?php
+    // Before the connection create greenroom database in phpMyadmin
     $dsn = 'mysql:dbname=greenroom;host=127.0.0.1';
     $user = 'root';
     $password = 'podberbog';
 
-    /* Connect to a MySQL database using driver invocation */
+    //Connect to a MySQL database using driver invocation */
     try {
         $conn = new PDO($dsn, $user, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
