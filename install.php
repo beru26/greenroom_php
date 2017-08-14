@@ -57,6 +57,7 @@ while($counter <= 50){
             VALUES(:brand,:type,:price,
             :performance,:description)");
 
+
     $instmt = $conn->prepare($sql);
 
     $instmt->bindValue(':brand', $brand);
@@ -68,7 +69,10 @@ while($counter <= 50){
     $inserted = $instmt->execute();
     $counter++;
 }
-echo $counter-1 .' row inserted!<br>';
 
+echo $counter-1 .' row inserted!<br>';
+//
+// $count_query = $conn->query("SELECT COUNT(*) FROM tractors")->fetchAll();
+// echo count($count_query) ."row </br>";
 
 die();
